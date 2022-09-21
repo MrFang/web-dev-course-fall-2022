@@ -10,14 +10,16 @@ router = APIRouter(
 
 
 @router.get('/list')
-def get_user_songs(username: str):
+def get_user_songs(username: str) -> List[str]:
     user: List[User] = [u for u in db['users'] if u.name == username]
 
-    if (user):
-        songs: List[str] = []
+    if not user:
+        return []
 
-        for p in user[0].playlists:
-            for s in p.songs:
-                songs.append(s)
+    songs: List[str] = []
 
-        return songs
+    for p in user[0].playlists:
+        for s in p.songs:
+            songs.append(s)
+
+    return songs

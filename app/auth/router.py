@@ -1,3 +1,5 @@
+from typing import List
+
 from app.auth.types import User
 from app.db import db
 from app.types.user import User as UserModel
@@ -9,10 +11,10 @@ router = APIRouter(
 
 
 @router.post('/register')
-def register(user: User):
+def register(user: User) -> None:
     db['users'].append(UserModel(user.name, []))
 
 
 @router.get('/list')  # For debug
-def list():
+def list() -> List[UserModel]:
     return db['users']
