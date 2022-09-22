@@ -41,6 +41,4 @@ class TestSongs(unittest.TestCase):
     def test_user_playlists(self, username: str, expected_songs: Set[str]):
         with unittest.mock.patch.dict(db, self.db):
             res = router.get_user_songs(username)
-
-            for s in expected_songs:
-                self.assertIn(s, res)
+            self.assertSetEqual(set(res), expected_songs)
