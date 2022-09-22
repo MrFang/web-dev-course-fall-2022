@@ -22,4 +22,4 @@ def get_user_songs(username: str) -> List[str]:
         for s in p.songs:
             songs.append(s)
 
-    return songs
+    return list(set(songs))

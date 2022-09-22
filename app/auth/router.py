@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from app.auth.types import User
 from app.db import db
@@ -12,7 +12,11 @@ router = APIRouter(
 
 @router.post('/register')
 def register(user: User) -> None:
-    db['users'].append(UserModel(user.name, []))
+    user_from_db: Optional[UserModel] = next(
+        (u for u in db['users'] if u.name == user.name), None)
+
+    if not user_from_db:
+        db['users'].append(UserModel(user.name, []))
 
 
 @router.get('/list')  # For debug

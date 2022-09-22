@@ -19,3 +19,9 @@ class TestAuth(unittest.TestCase):
         with unittest.mock.patch.dict(db, {'users': [self.test_user]}):
             res = router.list()
             self.assertEqual(res, [self.test_user])
+
+    def test_register_twice(self):
+        with unittest.mock.patch.dict(db, {'users': []}):
+            router.register(User(name='Fang', password='pass'))
+            router.register(User(name='Fang', password='pass2'))
+            self.assertEqual(db['users'], [self.test_user])
