@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+message Asset {
+  string name = 1;
+  bytes data = 2;
+}
+
+message Assets {
+  repeated Asset asset = 1;
+}
+
+message Directory {
+  string directory = 1;
+}
