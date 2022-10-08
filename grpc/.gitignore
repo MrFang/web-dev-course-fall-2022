@@ -1,0 +1,2 @@
+app/proto/**
+!app/proto/__init__.py

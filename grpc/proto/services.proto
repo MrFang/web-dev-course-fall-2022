@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+import "app/proto/messages.proto";
+
+service AssetService {
+  rpc GetAll(Directory) returns (Assets);
+}
